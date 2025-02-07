@@ -61,7 +61,7 @@ func main() {
 	})
 
 	charChecks := makePool(appendChecks, func(c paramCheck, output chan paramCheck) {
-		wasReflected, err := checkAppend(c.url, c.param, "iy3j4h234hjb23234")
+		wasReflected, err := checkAppend(c.url, c.param, "12nayelwashere34")
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error from checkAppend for url %s with param %s: %s", c.url, c.param, err)
 			return
@@ -74,7 +74,7 @@ func main() {
 
 	done := makePool(charChecks, func(c paramCheck, output chan paramCheck) {
 		output_of_url := []string{c.url, c.param}
-		for _, char := range []string{"\"", "'", "<", ">", "$", "|", "(", ")", "`", ":", ";", "{", "}"} {
+		for _, char := range []string{"\"", "'", "<", ">"} {
 			wasReflected, err := checkAppend(c.url, c.param, "aprefix"+char+"asuffix")
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "error from checkAppend for url %s with param %s with %s: %s", c.url, c.param, char, err)
